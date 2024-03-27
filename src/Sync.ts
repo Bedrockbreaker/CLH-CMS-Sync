@@ -32,6 +32,13 @@ await wf.fetchAllItems(classes).then(items => {
 				"days-class-held": data[1].chinese
 			}}
 		})).then(items => console.log(items)));
+		// After creating an item in all locales and attempting to publish it, the following response is returned:
+		/*
+		{
+			publishedItemIds: [],
+			errors: [ 'ValidationError: Validation Failure' ]
+		}
+		*/
 	}
 
 	return Promise.all(promises);
