@@ -155,8 +155,10 @@ export class WebflowConnection {
 			return Promise.all([mainItem, ...promises]);
 		});
 		// Bulk creation doesn't support the live endpoint (auto-publish)
-		if (live) promise.then(items => this.publishItems(collectionId, [items[0].id])).then(console.log);
-		return promise;
+		return live ? promise.then(items => this.publishItems(collectionId, [items[0].id]).then(publishedIds => {
+			console.log(publishedIds);
+			return items;
+		})) : promise;
 	}
 
 	/**
